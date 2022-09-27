@@ -25,7 +25,7 @@ Example:
 ### SQL
 
 ```
-sql [options] [--] <project> [<environment> [<relationship>]]
+./console.php sql [options] [--] <project> [<environment> [<relationship>]]
 
 Arguments:
   project               Project ID
