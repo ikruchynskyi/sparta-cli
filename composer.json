@@ -13,7 +13,8 @@
         "symfony/dependency-injection": "^5.4",
         "symfony/yaml": "^5.4",
         "magento-swat/data-collector": "dev-master",
-        "symfony/process": "^4.2"
+        "symfony/process": "^4.2",
+        "symfony/class-loader": "^3.4"
     },
     "license": "MIT",
     "authors": [

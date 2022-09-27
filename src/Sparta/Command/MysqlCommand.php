@@ -10,27 +10,29 @@ use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\Process;
 
 
-class SshCommand extends Command
+class MysqlCommand extends Command
 {
 
     public function configure()
     {
-        $this->setName('ssh')
-            ->setDescription('SSH wrapper for magento-cloud')
+        $this->setName('sql')
+            ->setDescription('SSH mysql wrapper for magento-cloud')
             ->addArgument('project', InputArgument::REQUIRED, 'Project ID')
             ->addArgument('environment', InputArgument::OPTIONAL, 'Environment code', "production")
-            ->addOption('executeCommand', 'c', InputArgument::OPTIONAL, 'Command to execute');
+            ->addArgument('relationship', InputArgument::OPTIONAL, 'Relationship', "database")
+            ->addOption('sql', 'sql', InputArgument::OPTIONAL, 'Command to execute');
     }
 
     public function execute(InputInterface $input, OutputInterface $output)
     {
         $processCommand = [
             'magento-cloud',
-            'ssh',
+            'sql',
             '--project=' . $input->getArgument('project'),
-            '--environment=' . $input->getArgument('environment')
+            '--environment=' . $input->getArgument('environment'),
+            '--relationship=' . $input->getArgument('relationship')
         ];
-        $executeCommand = $input->getOption('executeCommand');
+        $executeCommand = $input->getOption('sql');
         if ($executeCommand) {
             $processCommand[] = $executeCommand;
         }
