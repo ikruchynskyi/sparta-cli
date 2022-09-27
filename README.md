@@ -57,3 +57,21 @@ green  open   magento2_product_37_v7    JYIbkiY6RciCec3YTnO1Wg   3   2       466
 green  open   magento2_product_40_v7    YCiR0C2LTty7XLadzg2ugA   3   2       4666          697      400mb        121.6mb
 green  open   magento2_product_55_v6    br47e9-QTBGmu7K-kawKIA   3   2       2005          445    748.9mb        250.4mb
 ```
+
+### Inline patch check
+
+```
+Usage:
+./console.php patch:check <patchPath> <project> [<environment>]
+
+Arguments:
+  patchPath             Absolute path to the patch file
+  project               Project ID
+  environment           Environment code [default: "production"]
+  
+Example:
+./console.php patch:check /Users/kruchyns/test.patch 6fck2obu3244c
+File vendor/magento/framework/Search/Adapter/Mysql/TemporaryStorage.php is read-only; trying to patch anyway
+checking file vendor/magento/framework/Search/Adapter/Mysql/TemporaryStorage.php
+Hunk #1 succeeded at 98 (offset 5 lines).  
+```
