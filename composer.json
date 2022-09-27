@@ -1,0 +1,30 @@
+{
+    "name": "ikruchynskyi/cloud-tools",
+    "description": "Wrapper on magento-cloud CLI",
+    "type": "project",
+    "repositories": [
+      {
+        "type": "vcs",
+        "url": "git@github.com:magento-swat/data-collector.git"
+      }
+    ],
+    "require": {
+        "symfony/console": "^5.4",
+        "symfony/dependency-injection": "^5.4",
+        "symfony/yaml": "^5.4",
+        "magento-swat/data-collector": "dev-master",
+        "symfony/process": "^4.2"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ihor Kruchynskyi",
+            "email": "kruchyns@adobe.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Sparta\\": "src/Sparta/"
+        }
+    }
+}
