@@ -9,10 +9,15 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\Process;
 
-
-class MysqlCommand extends Command
+/**
+ * CLI wrapper for magento-cloud sql command.
+ */
+class SqlCommand extends Command
 {
 
+    /**
+     * @return void
+     */
     public function configure()
     {
         $this->setName('sql')
@@ -20,9 +25,14 @@ class MysqlCommand extends Command
             ->addArgument('project', InputArgument::REQUIRED, 'Project ID')
             ->addArgument('environment', InputArgument::OPTIONAL, 'Environment code', "production")
             ->addArgument('relationship', InputArgument::OPTIONAL, 'Relationship', "database")
-            ->addOption('sql', 'sql', InputArgument::OPTIONAL, 'Command to execute');
+            ->addOption('query', 'query', InputArgument::OPTIONAL, 'DB query to execute');
     }
 
+    /**
+     * @param InputInterface $input
+     * @param OutputInterface $output
+     * @return int|null
+     */
     public function execute(InputInterface $input, OutputInterface $output)
     {
         $processCommand = [
@@ -32,7 +42,7 @@ class MysqlCommand extends Command
             '--environment=' . $input->getArgument('environment'),
             '--relationship=' . $input->getArgument('relationship')
         ];
-        $executeCommand = $input->getOption('sql');
+        $executeCommand = $input->getOption('query');
         if ($executeCommand) {
             $processCommand[] = $executeCommand;
         }

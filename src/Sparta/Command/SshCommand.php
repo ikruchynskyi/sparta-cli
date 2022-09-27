@@ -9,10 +9,15 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\Process;
 
-
+/**
+ * CLI wrapper for magento-cloud ssh command.
+ */
 class SshCommand extends Command
 {
 
+    /**
+     * @return void
+     */
     public function configure()
     {
         $this->setName('ssh')
@@ -22,6 +27,11 @@ class SshCommand extends Command
             ->addOption('executeCommand', 'c', InputArgument::OPTIONAL, 'Command to execute');
     }
 
+    /**
+     * @param InputInterface $input
+     * @param OutputInterface $output
+     * @return int|null
+     */
     public function execute(InputInterface $input, OutputInterface $output)
     {
         $processCommand = [

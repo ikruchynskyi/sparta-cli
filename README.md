@@ -22,7 +22,7 @@ Example:
   ./console.php ssh 6fck2obu3244c --executeCommand=ls
 ```
 
-### MYSQL
+### SQL
 
 ```
 sql [options] [--] <project> [<environment> [<relationship>]]
@@ -33,7 +33,7 @@ Arguments:
   relationship          Relationship [default: "database"]
 
 Options:
-  -sql, --sql=SQL       Command to execute
+  -query, --query=QUERY  DB query to execute
   
 Example:
 ./console.php sql 6fck2obu3244c --sql="select count(*), status from cron_schedule group by status"
