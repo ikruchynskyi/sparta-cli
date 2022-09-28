@@ -36,7 +36,7 @@ Options:
   -query, --query=QUERY  DB query to execute
   
 Example:
-./console.php sql 6fck2obu3244c --sql="select count(*), status from cron_schedule group by status"
+./console.php sql 6fck2obu3244c --query="select count(*), status from cron_schedule group by status"
 count(*)	status
 4	error
 259	missed
@@ -74,4 +74,23 @@ Example:
 File vendor/magento/framework/Search/Adapter/Mysql/TemporaryStorage.php is read-only; trying to patch anyway
 checking file vendor/magento/framework/Search/Adapter/Mysql/TemporaryStorage.php
 Hunk #1 succeeded at 98 (offset 5 lines).  
+```
+
+## Run with Docker
+### Install dependencies
+```shell
+docker run --rm --interactive --tty --volume $PWD:/app composer install --ignore-platform-reqs --no-scripts
+```
+
+### Build PHP container
+```shell
+docker build -t sparta-console .
+```
+
+### Run Example
+```shell
+docker run \
+  --rm -it \
+  -v "$(pwd):/app" \
+  -w /app sparta-console php console.php
 ```
