@@ -6,7 +6,19 @@
       {
         "type": "vcs",
         "url": "git@github.com:magento-swat/data-collector.git"
-      }
+      },
+      {
+        "type": "package",
+        "package": {
+           "name": "netz98/n98-magerun2",
+           "version": "5.2.0",
+           "source": {
+             "url": "git@github.com:netz98/n98-magerun2.git",
+             "type": "git",
+             "reference": "e11be34"
+          }
+       }
+    }
     ],
     "require": {
         "symfony/console": "^5.4",
@@ -14,7 +26,10 @@
         "symfony/yaml": "^5.4",
         "magento-swat/data-collector": "dev-master",
         "symfony/process": "^4.2",
-        "symfony/class-loader": "^3.4"
+        "symfony/class-loader": "^3.4",
+	    "netz98/n98-magerun2": "5.2.0",
+        "symfony/event-dispatcher": "^5.4",
+        "symfony/finder": "^5.4"
     },
     "license": "MIT",
     "authors": [
@@ -25,7 +40,13 @@
     ],
     "autoload": {
         "psr-4": {
-            "Sparta\\": "src/Sparta/"
+            "Sparta\\": "src/Sparta/",
+            "N98\\": "vendor/netz98/n98-magerun2/src/N98/"
         }
-    }
+    },
+   "scripts": {
+     "post-autoload-dump": [
+       "cd vendor/netz98/n98-magerun2 && composer install"
+     ]
+   }
 }
