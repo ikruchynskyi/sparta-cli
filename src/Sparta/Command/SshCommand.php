@@ -15,6 +15,8 @@ use Symfony\Component\Process\Process;
 class SshCommand extends Command
 {
 
+    private $executionStack = [];
+
     /**
      * @return void
      */
@@ -49,8 +51,30 @@ class SshCommand extends Command
         if (!$process->isSuccessful()) {
             throw new ProcessFailedException($process);
         }
+        $this->addToStack($executeCommand, [
+            'result' => $process->getOutput(),
+            'code' => $process->getExitCode()
+        ]);
         $output->writeln($process->getOutput());
 
         return $process->getExitCode();
+    }
+
+    /**
+     * @param $key
+     * @param array $data
+     * @return void
+     */
+    public function addToStack($key, array $data)
+    {
+        $this->executionStack[$key] = $data;
+    }
+
+    /**
+     * @return array
+     */
+    public function getExecutionStack()
+    {
+        return $this->executionStack;
     }
 }
