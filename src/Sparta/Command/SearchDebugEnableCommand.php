@@ -2,13 +2,11 @@
 
 namespace Sparta\Command;
 
-use phpDocumentor\Reflection\Types\Self_;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Process\Exception\ProcessFailedException;
-use Symfony\Component\Process\Process;
+use Symfony\Component\Console\Output\NullOutput;
 
 /**
  * Enable/disable search debug on Magento Cloud instance
@@ -45,7 +43,8 @@ class SearchDebugEnableCommand extends Command
      */
     public function execute(InputInterface $input, OutputInterface $output)
     {
-        switch ($this->determineSearchEngine($input, $output)) {
+        $nullOutput = new NullOutput;
+        switch ($this->determineSearchEngine($input, $nullOutput)) {
             case self::ELASTICSEARCH:
                 $output->writeln("// patch ES adapter");
                 break;
